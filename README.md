@@ -1,2 +1,4 @@
-# technology-radar
-技术雷达
+# 技术雷达
+
+## TODO
+多雷达支持(e.g.读书雷达)
