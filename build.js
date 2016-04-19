@@ -56,7 +56,7 @@ jsonfile.writeFile("data/data.json", fileTree, function() {
             nodes.forEach(function(n) {
                 fs.readFile("data/" + n.path, 'utf8', function(err, data) {
                     var content = fm(data);
-                    var name = n.name;
+                    var name = content.attributes.name; //n.name;
                     var item = new Item(name, quadrant, content.attributes.level);
                     results.push(item);
                     var points = _.map(results, function(r) {
