@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+- 5.10.1
+script:
+- git config --global user.email "mlc880926@gmail.com"
+- git config --global user.name "Ma Lucheng"
+- git config --global push.default simple
+- git remote add upstream "https://${GH_TOKEN}@github.com/teddy-ma/technology-radar.git"
+- git fetch upstream
+- git reset upstream/gh-pages
+- npm install
+- npm run build
+- ls
+- git add -A .
+- git commit -m "update from travis"
+- git push -q upstream HEAD:gh-pages
+env:
+  global:
+    secure: Ds9cVlMSqKMctAtgYzrTZAdtaM0VbNOF6qO/FKdtFmP7tfvn0q6ZSrVSJCQfJ1JAy/iEekDkX69iLu1XT92ZGBxI7JRJKJPIzcSUAjBMTnipwHBwARf/jK+lW7u657TbIo0jABZ6IXRXRkhE9IiNZfRprVZsCKW3O9UMgUvRntKscLYWC8u9llLl5TgymsBHyB4CAPlC6LS4/Evhqiyr1inoezsIcBTbNlGC4/GDlMNP7zjvhUszk/AgZU4BhzYHb96QRpyBOm78NniBll6RIN0t6/EPlLl4jQ4KFvLeyrhfOqVtkqwiZwlUNhnHEn15T17Kfx3b223aID/WbE2qxwin/Qfk6P2Jeu4WvRILfEqwEO9e1UbLV94CRh6KVrboCTXLV+vpALmCmNGE7eHXkf1so3pp15Qig9cJ+RIGCWZaaMtFUG4L6qsVAX+1HBcXmrkRa2hN8YilvmKIAeZAKhYjjISzBeZMOU6u/bwwDFErJBvU/n24c1Kpv9CpPFyzKUNqC+HmC1e/Kk0eJXHBKE2uxRDzuMqMFpfOQoAyfw8HVwGCCch4HkxA2uccQYu023y8w3YLgIzaZqSep79lEE/GJMnnLJQLAp2LcmlwJJLMJHHzwYui6fSjteTcq2G8qFGHvEG9+mUGuSLCml4AeBcBx8l7j8MpWH229C6+2Lk=
