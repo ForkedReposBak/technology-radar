@@ -10,7 +10,7 @@ script:
 - git reset upstream/gh-pages
 - npm install
 - npm run build
-- ls
+- rm .gitignore
 - git add -A .
 - git commit -m "update from travis"
 - git push -q upstream HEAD:gh-pages
