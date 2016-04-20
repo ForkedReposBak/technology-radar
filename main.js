@@ -111,4 +111,9 @@ function render_axis() {
     bgsvg.append("text").attr("x", unit_r * 15.5).attr("y", bg_circle_r).text("试验").attr("text-anchor", "middle");
     bgsvg.append("text").attr("x", unit_r * 18).attr("y", bg_circle_r).text("评估").attr("text-anchor", "middle");
     bgsvg.append("text").attr("x", unit_r * 19.5).attr("y", bg_circle_r).text("暂缓").attr("text-anchor", "middle");
+
+    bgsvg.append("text").attr("x", bg_circle_r * 0.1).attr("y", bg_circle_r * 0.1).text("平台").attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", bg_circle_r * 0.1).attr("y", 2 * bg_circle_r).text("语言").attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", 2 * bg_circle_r - bg_circle_r * 0.1).attr("y", bg_circle_r * 0.1).text("技术").attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", 2 * bg_circle_r - bg_circle_r * 0.1).attr("y", 2 * bg_circle_r).text("工具").attr("text-anchor", "middle");
 }
