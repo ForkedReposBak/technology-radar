@@ -29,19 +29,18 @@ var quadrant_define = {
 };
 // end config................
 
-function Item(name, quadrant, level) {　　　　
+function Item(name, quadrant, level, summary) {　　　　
     this.name = name;　　　　
     this.quadrant = quadrant;　　　　
     this.level = level;　　　　
-    this.eat = function() {
-        alert("hello");
-    };　　
+    this.summary = summary;
 }
 
-function Point(name, x, y) {　　　　
-    this.name = name;　　　　
+function Point(name, x, y, summary) {　　　　
+    this.name = name;
     this.x = x;　　　　
-    this.y = y;　　　　
+    this.y = y;
+    this.summary = summary;
 }
 
 var results = [];
@@ -57,7 +56,8 @@ jsonfile.writeFile("data/data.json", fileTree, function() {
                 fs.readFile("data/" + n.path, 'utf8', function(err, data) {
                     var content = fm(data);
                     var name = content.attributes.name; //n.name;
-                    var item = new Item(name, quadrant, content.attributes.level);
+                    console.log(content.body);
+                    var item = new Item(name, quadrant, content.attributes.level, content.body);
                     results.push(item);
                     var points = _.map(results, function(r) {
                         return generate_random_location(r);
@@ -94,6 +94,6 @@ function generate_random_location(item) {
     }
     var x = bg_circle_r + current_r * Math.sin(jiaodu * (Math.PI / 180));
     var y = bg_circle_r + current_r * Math.cos(jiaodu * (Math.PI / 180));
-    var point = new Point(item.name, x, y);
+    var point = new Point(item.name, x, y, item.summary);
     return point;
 }
