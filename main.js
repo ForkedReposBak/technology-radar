@@ -59,17 +59,10 @@ function render_items() {
         .text(function(d, i) {
           return d.name
         })
-        // .on("click", function(d) {
-        //     $.ajax({
-        //         url: "./data/" + d[0] + ".md",
-        //         type: 'get',
-        //         dataType: 'text',
-        //         success: function(data) {
-        //             var html = converter.makeHtml(data);
-        //             $("#content").html(html);
-        //         }
-        //     });
-        // });
+        .on("click", function(d, i) {
+          var html = converter.makeHtml(d.summary);
+          $("#content").html(html);
+        });
 }
 
 // 绘制背景圆形
