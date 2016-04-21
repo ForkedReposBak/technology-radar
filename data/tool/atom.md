@@ -1,6 +1,6 @@
 ---
 level: 1
-name: restful
+name: atom
 ---
 
 # GitHub 出品的开源编辑器
