@@ -9,7 +9,7 @@ name: zsh
 
 作为用户, 一开始并没有必要所有配置都自己重新来过. 完全可以去使用别人的配置或者使用相关框架.
 
-参考资料 <http://www.songofcode.com/posts/powerful-zsh/>
+参考资料 <http://www.jianshu.com/p/18c3e2749caf>
 
 ## 常用插件
 
