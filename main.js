@@ -20,7 +20,7 @@ bgsvg = d3.select('body').append('svg');
 
 // data.json 的格式为 ["name", x_point, y_point]
 $.ajax({
-    url: "./data/items.json",
+    url: window.data_url,
     type: 'get',
     dataType: 'json',
     success: function(ret) {
@@ -95,18 +95,18 @@ function render_axis() {
     y_line.attr("x1", bg_circle_r).attr("y1", 0).attr("x2", bg_circle_r).attr("y2", svg_length)
         .attr("style", "stroke:rgb(255,255,255);stroke-width:2")
 
-    bgsvg.append("text").attr("x", unit_r * 0.5).attr("y", bg_circle_r).text("暂缓").attr("text-anchor", "middle");
-    bgsvg.append("text").attr("x", unit_r * 2).attr("y", bg_circle_r).text("评估").attr("text-anchor", "middle");
-    bgsvg.append("text").attr("x", unit_r * 4.5).attr("y", bg_circle_r).text("试验").attr("text-anchor", "middle");
-    bgsvg.append("text").attr("x", unit_r * 8).attr("y", bg_circle_r).text("采用").attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", unit_r * 0.5).attr("y", bg_circle_r).text(window.ring_text[0]).attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", unit_r * 2).attr("y", bg_circle_r).text(window.ring_text[1]).attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", unit_r * 4.5).attr("y", bg_circle_r).text(window.ring_text[2]).attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", unit_r * 8).attr("y", bg_circle_r).text(window.ring_text[3]).attr("text-anchor", "middle");
 
-    bgsvg.append("text").attr("x", unit_r * 12).attr("y", bg_circle_r).text("采用").attr("text-anchor", "middle");
-    bgsvg.append("text").attr("x", unit_r * 15.5).attr("y", bg_circle_r).text("试验").attr("text-anchor", "middle");
-    bgsvg.append("text").attr("x", unit_r * 18).attr("y", bg_circle_r).text("评估").attr("text-anchor", "middle");
-    bgsvg.append("text").attr("x", unit_r * 19.5).attr("y", bg_circle_r).text("暂缓").attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", unit_r * 12).attr("y", bg_circle_r).text(window.ring_text[3]).attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", unit_r * 15.5).attr("y", bg_circle_r).text(window.ring_text[2]).attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", unit_r * 18).attr("y", bg_circle_r).text(window.ring_text[1]).attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", unit_r * 19.5).attr("y", bg_circle_r).text(window.ring_text[0]).attr("text-anchor", "middle");
 
-    bgsvg.append("text").attr("x", bg_circle_r * 0.1).attr("y", bg_circle_r * 0.1).text("平台").attr("text-anchor", "middle");
-    bgsvg.append("text").attr("x", bg_circle_r * 0.1).attr("y", 2 * bg_circle_r).text("语言").attr("text-anchor", "middle");
-    bgsvg.append("text").attr("x", 2 * bg_circle_r - bg_circle_r * 0.1).attr("y", bg_circle_r * 0.1).text("技术").attr("text-anchor", "middle");
-    bgsvg.append("text").attr("x", 2 * bg_circle_r - bg_circle_r * 0.1).attr("y", 2 * bg_circle_r).text("工具").attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", bg_circle_r * 0.1).attr("y", bg_circle_r * 0.1).text(window.quadrant_text[0]).attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", bg_circle_r * 0.1).attr("y", 2 * bg_circle_r).text(window.quadrant_text[1]).attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", 2 * bg_circle_r - bg_circle_r * 0.1).attr("y", bg_circle_r * 0.1).text(window.quadrant_text[2]).attr("text-anchor", "middle");
+    bgsvg.append("text").attr("x", 2 * bg_circle_r - bg_circle_r * 0.1).attr("y", 2 * bg_circle_r).text(window.quadrant_text[3]).attr("text-anchor", "middle");
 }

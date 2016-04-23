@@ -1,12 +1,15 @@
-# 技术雷达 [![Build Status](https://travis-ci.org/teddy-ma/technology-radar.svg?branch=master)](https://travis-ci.org/teddy-ma/technology-radar)
+# 读书雷达
 
-受[此文](http://insights.thoughtworkers.org/build-your-own-technology-radar/)启发所编写的自己的技术雷达.
+## 象限
 
-## Usage
++ 科学
++ 工程
++ 艺术
++ 其他
 
-`npm run start`
+## 环(半径)
 
-## TODO
-
-- 多雷达支持(按时间划分和按内容划分)
-- 坐标碰撞的问题优化
++ 读完
++ 在读
++ 想读
++ 待定
