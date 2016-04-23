@@ -1,7 +1,28 @@
 var jsonfile = require('jsonfile')
 var util = require('util')
 var dirTree = require('directory-tree');
-var fileTree = dirTree.directoryTree('data/', ['.md']);
+// var readingFileTree = dirTree.directoryTree('data/reading/', ['.md']);
+// var techFileTree = dirTree.directoryTree('data/tech/', ['.md']);
+var fts = [
+  {
+    "path": 'data/reading/',
+    "quadrant": {
+      "art": 1,
+      "engineering": 2,
+      "science": 3,
+      "other": 4
+    }
+  },
+  {
+    "path": 'data/tech/',
+    "quadrant": {
+      "tool": 1,
+      "tech": 2,
+      "platform": 3,
+      "language": 4
+    }
+  }
+];
 var _ = require('lodash');
 var fs = require('fs');
 var fm = require('front-matter')
@@ -21,12 +42,7 @@ var bg_circle_r = svg_length / 2;
 var item_width = 20;
 var item_height = 10;
 
-var quadrant_define = {
-    "tool": 1,
-    "tech": 2,
-    "platform": 3,
-    "language": 4
-};
+
 // end config................
 
 function Item(name, quadrant, level, summary) {　　　　
@@ -43,41 +59,48 @@ function Point(name, x, y, summary) {　　　　
     this.summary = summary;
 }
 
-var results = [];
+// var fts = [readingFileTree, techFileTree];
+fts.forEach(function(ft){
+  var path = ft.path;
+  var quadrant_define = ft.quadrant;
+  var fileTree = dirTree.directoryTree(path, ['.md']);
+  var results = [];
 
-jsonfile.writeFile("data/data.json", fileTree, function() {
-    // 在读取 data.json , 重构数据结构后再次写入
-    jsonfile.readFile("data/data.json", function(err, obj) {
-        var folders = obj.children;
-        folders.forEach(function(f) {
-            var quadrant = f.name;
-            var nodes = f.children;
-            nodes.forEach(function(n) {
-                fs.readFile("data/" + n.path, 'utf8', function(err, data) {
-                    var content = fm(data);
-                    var name = content.attributes.name; //n.name;
-                    console.log(content.body);
-                    var item = new Item(name, quadrant, content.attributes.level, content.body);
-                    results.push(item);
-                    var points = _.map(results, function(r) {
-                        return generate_random_location(r);
-                    });
-                    jsonfile.writeFile("data/items.json", points, function(err) {
-                        if (err) {
-                            console.error(err)
-                        } else {
-                            console.log("build data success!");
-                        }
-                    });
-                });
-            });
-        });
-    });
+  jsonfile.writeFile(path + "data.json", fileTree, function() {
+      // 在读取 data.json , 重构数据结构后再次写入
+      jsonfile.readFile(path + "data.json", function(err, obj) {
+          var folders = obj.children;
+          folders.forEach(function(f) {
+              var quadrant = f.name;
+              var nodes = f.children;
+              nodes.forEach(function(n) {
+                  fs.readFile(path + n.path, 'utf8', function(err, data) {
+                      var content = fm(data);
+                      var name = content.attributes.name; //n.name;
+                      console.log(content.body);
+                      var item = new Item(name, quadrant, content.attributes.level, content.body);
+                      results.push(item);
+                      var points = _.map(results, function(r) {
+                          return generate_random_location(r, quadrant_define);
+                      });
+                      jsonfile.writeFile(path + "items.json", points, function(err) {
+                          if (err) {
+                              console.error(err)
+                          } else {
+                              console.log("build data success!");
+                          }
+                      });
+                  });
+              });
+          });
+      });
+  });
 });
+
 
 // 根据象限和环生成随机的坐标
 // function generate_random_location(name, quadrant, level) {
-function generate_random_location(item) {
+function generate_random_location(item, quadrant_define) {
     var quadrant_number = quadrant_define[item.quadrant];
     var jiaodu = _.random((quadrant_number - 1) * 90 + 20, quadrant_number * 90 - 20);
     if (item.level == 1) {
