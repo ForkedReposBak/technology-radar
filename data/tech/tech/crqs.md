@@ -2,6 +2,7 @@
 level: 2
 name: CQRS
 ---
+
 # CQRS
 
 命令，查询职责分离，是一种架构思想。
