@@ -1,8 +1,7 @@
 var jsonfile = require('jsonfile')
 var util = require('util')
 var dirTree = require('directory-tree');
-// var readingFileTree = dirTree.directoryTree('data/reading/', ['.md']);
-// var techFileTree = dirTree.directoryTree('data/tech/', ['.md']);
+
 var fts = [
   {
     "path": 'data/reading/',
@@ -77,7 +76,7 @@ fts.forEach(function(ft){
                   fs.readFile(path + n.path, 'utf8', function(err, data) {
                       var content = fm(data);
                       var name = content.attributes.name; //n.name;
-                      console.log(content.body);
+                      // console.log(content.body);
                       var item = new Item(name, quadrant, content.attributes.level, content.body);
                       results.push(item);
                       var points = _.map(results, function(r) {
